@@ -15,7 +15,7 @@ export default {
         <div class="mb-3">
             <input type="text" class="form-control" id="makeSearch" :placeholder="placeholder || 'Search...'"
                 v-model.trim="searchTerm" @keyup="$emit('term-change', searchTerm)">
-            <button type="submit" class="btn btn-primary" @click="$emit('search-submit')">Submit</button>
+            <button type="submit" class="btn btn-danger" @click="$emit('search-submit')">Search</button>
         </div>
     </form>
 </template>
