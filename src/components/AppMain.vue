@@ -2,12 +2,13 @@
 import AppHeader from './AppHeader.vue';
 
 export default {
-    components: AppHeader,
-
+    components: { AppHeader }
 }
 
 </script>
 
-<template></template>
+<template>
+    <AppHeader />
+</template>
 
 <style></style>
