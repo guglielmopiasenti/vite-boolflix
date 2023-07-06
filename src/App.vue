@@ -2,6 +2,7 @@
 import axios from 'axios';
 const endpoint = 'https://api.themoviedb.org/3/search/movie?api_key=417ff78debed7617bb96dc46540a0f3d';
 import AppMain from './components/AppMain.vue';
+import { api } from './assets/data/index';
 import { store } from './assets/data/store.js';
 
 export default {
