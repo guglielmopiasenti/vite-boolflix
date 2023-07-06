@@ -8,36 +8,43 @@ import { store } from './assets/data/store.js';
 
 export default {
   components: { AppMain, AppHeader },
-
-  methods: {
-
-    fetchMovies() {
-      if (!store.titleFilter) {
-        store.movies = [];
-        return;
-      };
-
-      const { key, baseUri } = api
-
-      const axiosConfig = {
+  computed: {
+    axiosConfig() {
+      const { key } = api;
+      return {
         params: {
           api_key: key,
           query: store.titleFilter,
         }
-      }
+      };
+    }
+  },
+  methods: {
+    fetchProductions() {
+      if (!store.titleFilter) {
+        store.movies = [];
+        store.series = [];
+        return;
 
-      axios.get(`${baseUri}/search/movie`, axiosConfig)
-        .then(res => {
-          store.movies = res.data.results
-        });
+      }
+      this.fetchApi('search/movies', 'movies');
+      this.fetchApi('search/tv', 'series');
+
     },
+    fetchApi(endpoint) {
+      axios.get(`${api.baseUri}/${endpoint}`, this.axiosConfig)
+        .then(res => {
+          store[target] = res.data.results;
+        });
+    }
   }
-}
+};
+
 
 </script>
 
 <template>
-  <AppHeader @search-submit="fetchMovies" />
+  <AppHeader @search-submit="fetchProductions" />
   <AppMain />
 </template>
 

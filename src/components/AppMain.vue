@@ -20,6 +20,15 @@ export default {
             <li>{{ movie.vote_average }}</li>
         </ul>
     </section>
+    <section id="series">
+        <h2>Series</h2>
+        <ul v-for="serie in store.series " :key='serie.id'>
+            <li>{{ serie.name }}</li>
+            <li>{{ serie.original_name }}</li>
+            <li>{{ serie.original_language }}</li>
+            <li>{{ serie.vote_average }}</li>
+        </ul>
+    </section>
 </template>
 
 <style></style>
