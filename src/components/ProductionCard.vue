@@ -15,6 +15,10 @@ export default {
         imagePath() {
             const url = new URL(`https://image.tmdb.org/t/p/w342/${this.item.backdrop_path}`);
             return url.href;
+        },
+        voteRating() {
+            // Convert the vote average from 1-10 to an integer from 1-5
+            return Math.ceil(this.item.vote_average / 2);
         }
     }
 }
@@ -33,8 +37,11 @@ export default {
             <!-- Display original language if flag is not available -->
             <span v-else> {{ item.original_language }}</span>
         </li>
-        <!-- Display vote average of the item -->
-        <li>{{ item.vote_average }}</li>
+        <!-- Display the vote rating as a number of full stars -->
+        <li>
+            <span v-for="n in 5" :key="n"
+                :class="{ 'fa fa-star': n <= voteRating, 'fa-regular fa-star': n > voteRating }"></span>
+        </li>
     </ul>
 </template>
 <style></style>\
