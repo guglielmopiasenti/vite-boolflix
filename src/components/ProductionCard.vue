@@ -18,12 +18,17 @@ export default {
 
 <template>
     <ul>
+        <!-- Display title or name of the item -->
         <li>{{ item.title || item.name }}</li>
+        <!-- Display original title or name of the item -->
         <li>{{ item.original_title || item.original_name }}</li>
         <li>
+            <!-- Display flag image if language is available -->
             <img v-if="hasFlag" :src="flagSrc" :alt="item.original_language">
+            <!-- Display original language if flag is not available -->
             <span v-else> {{ item.original_language }}</span>
         </li>
+        <!-- Display vote average of the item -->
         <li>{{ item.vote_average }}</li>
     </ul>
 </template>

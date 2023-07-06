@@ -26,12 +26,16 @@ export default {
         store.series = [];
         return;
       }
+      // Fetch movies based on title filter
       this.fetchApi('search/movie', 'movies');
+      // Fetch series based on title filter
       this.fetchApi('search/tv', 'series');
     },
-    fetchApi(endpoint, target) { // Add the 'target' parameter
+    // Add the 'target' parameter to specify the store property to update
+    fetchApi(endpoint, target) {
       axios.get(`${api.baseUri}/${endpoint}`, this.axiosConfig)
         .then(res => {
+          // Update the store property with the fetched data
           store[target] = res.data.results;
         });
     }
@@ -43,6 +47,7 @@ export default {
 </script>
 
 <template>
+  <!-- Display the AppHeader component and listen for search-submit event -->
   <AppHeader @search-submit="fetchProductions" />
   <AppMain />
 </template>
