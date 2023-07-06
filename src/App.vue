@@ -1,25 +1,43 @@
 <script>
 import axios from 'axios';
-const endpoint = 'https://api.themoviedb.org/3/search/movie?api_key=417ff78debed7617bb96dc46540a0f3d';
+
 import AppMain from './components/AppMain.vue';
+import AppHeader from './components/AppHeader.vue';
 import { api } from './assets/data/index';
 import { store } from './assets/data/store.js';
 
 export default {
-  components: { AppMain, },
+  components: { AppMain, AppHeader },
 
-  created() {
-    // Fetching data from the specified endpoint using axios
-    axios.get(endpoint).then(res => {
-      // Assigning the received data to the 'movies' property in the store
-      store.movies = res.data.docs;
-    });
-  },
+  methods: {
+
+    fetchMovies() {
+      if (!store.titleFilter) {
+        store.movies = [];
+        return;
+      };
+
+      const { key, baseUri } = api
+
+      const axiosConfig = {
+        params: {
+          api_key: key,
+          query: store.titleFilter,
+        }
+      }
+
+      axios.get(`${baseUri}/search/movie`, axiosConfig)
+        .then(res => {
+          store.movies = res.data.results
+        });
+    },
+  }
 }
 
 </script>
 
 <template>
+  <AppHeader @search-submit="fetchMovies" />
   <AppMain />
 </template>
 

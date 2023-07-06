@@ -1,14 +1,25 @@
 <script>
-import AppHeader from './AppHeader.vue';
+
+import { store } from '../assets/data/store';
 
 export default {
-    components: { AppHeader }
+    data() {
+        return { store }
+    }
 }
 
 </script>
 
 <template>
-    <AppHeader />
+    <section id="movies">
+        <h2>Movies</h2>
+        <ul v-for="movie in store.movies " :key='movie.id'>
+            <li>{{ movie.title }}</li>
+            <li>{{ movie.original_title }}</li>
+            <li>{{ movie.original_language }}</li>
+            <li>{{ movie.vote_average }}</li>
+        </ul>
+    </section>
 </template>
 
 <style></style>

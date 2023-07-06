@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-    <form @submit.prevent="$emit('form-submit')">
+    <form @submit.prevent="$emit('search-submit')">
         <div class="mb-3">
             <input type="text" class="form-control" id="makeSearch" :placeholder="placeholder || 'Search...'"
                 v-model.trim="searchTerm" @keyup="$emit('term-change', searchTerm)">
