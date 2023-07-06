@@ -1,7 +1,5 @@
 <script>
-const endpoint = 'https://api.themoviedb.org/3/search/movie?api_key=417ff78debed7617bb96dc46540a0f3d';
 import SearchBar from './SearchBar.vue';
-import AppButton from './AppButton.vue';
 import { store } from '../assets/data/store';
 import axios from 'axios';
 
@@ -9,6 +7,7 @@ export default {
     components: { SearchBar },
     data() {
         return {
+            store,
             moviesFilter: ''
         }
     },
@@ -43,6 +42,16 @@ export default {
 
 <template>
     <SearchBar placeholder="Search for a movie or tv series..." @term-change="onTermChange" @search-submit="searchMovies" />
+
+    <section id="movies">
+        <h2>Movies</h2>
+        <ul v-for="movie in store.movies">
+            <li>{{ movie.title }}</li>
+            <li>{{ movie.original_title }}</li>
+            <li>{{ movie.original_language }}</li>
+            <li>{{ movie.vote_average }}</li>
+        </ul>
+    </section>
 </template>
 
 <style></style>
