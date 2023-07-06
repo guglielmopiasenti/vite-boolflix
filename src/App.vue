@@ -25,19 +25,18 @@ export default {
         store.movies = [];
         store.series = [];
         return;
-
       }
-      this.fetchApi('search/movies', 'movies');
+      this.fetchApi('search/movie', 'movies');
       this.fetchApi('search/tv', 'series');
-
     },
-    fetchApi(endpoint) {
+    fetchApi(endpoint, target) { // Add the 'target' parameter
       axios.get(`${api.baseUri}/${endpoint}`, this.axiosConfig)
         .then(res => {
           store[target] = res.data.results;
         });
     }
   }
+
 };
 
 
