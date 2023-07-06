@@ -11,12 +11,17 @@ export default {
         flagSrc() {
             const url = new URL(`../assets/img/${this.item.original_language}.png`, import.meta.url);
             return url.href;
+        },
+        imagePath() {
+            const url = new URL(`https://image.tmdb.org/t/p/w342/${this.item.backdrop_path}`);
+            return url.href;
         }
     }
 }
 </script>
 
 <template>
+    <img :src="imagePath" alt="">
     <ul>
         <!-- Display title or name of the item -->
         <li>{{ item.title || item.name }}</li>
@@ -32,4 +37,4 @@ export default {
         <li>{{ item.vote_average }}</li>
     </ul>
 </template>
-<style></style>
+<style></style>\
