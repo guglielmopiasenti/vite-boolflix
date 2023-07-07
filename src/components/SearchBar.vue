@@ -13,7 +13,7 @@ export default {
 
 <template>
     <form @submit.prevent="$emit('search-submit')">
-        <div class="mb-3">
+        <div class="d-flex gap-3">
             <input type="text" class="form-control" id="makeSearch" :placeholder="placeholder || 'Search...'"
                 v-model.trim="searchTerm" @keyup="$emit('term-change', searchTerm)">
             <button type="submit" class="btn btn-danger">Search</button>
@@ -21,4 +21,4 @@ export default {
     </form>
 </template>
 
-<style></style>
+<style lang="scss" scoped></style>
