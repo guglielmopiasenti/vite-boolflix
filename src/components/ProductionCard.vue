@@ -20,14 +20,20 @@ export default {
             // Convert the vote average from 1-10 to an integer from 1-5
             return Math.ceil(this.item.vote_average / 2);
         }
-    }
+    },
+    methods: {
+        handleImageError(event) {
+            // Update the source of the image to the default image path
+            event.target.src = 'src/assets/img/Netflix-logo-red-black-png.png';
+        },
+    },
 }
 </script>
 
 <template>
     <section id="card">
         <div class="image-container">
-            <img :src="imagePath" alt="">
+            <img :src="imagePath" alt="" class="prod-img" @error="handleImageError">
             <ul class="content">
                 <!-- Display title or name of the item -->
                 <li>{{ item.title || item.name }}</li>
@@ -67,6 +73,7 @@ export default {
     visibility: hidden;
     transition: opacity 0.3s;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     color: white;
     width: 100%;
     height: 100%;
@@ -93,5 +100,10 @@ li {
     span {
         color: rgb(255, 200, 0);
     }
+}
+
+.prod-img {
+    height: 230px;
+
 }
 </style>
